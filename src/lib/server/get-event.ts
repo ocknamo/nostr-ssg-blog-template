@@ -1,16 +1,17 @@
+import type * as Nostr from 'nostr-typedef';
 import { Relay } from 'nostr-tools/relay';
 
-export async function fetchEvent(): Promise<string> {
+export async function getEvent(): Promise<Nostr.Event | null> {
 	const relay = await Relay.connect('wss://nos.lol/');
 	console.log(`connected to ${relay.url}`);
 
 	// let's query for an event that exists
 
-	const event = await new Promise((resolve, reject) => {
+	const event: Nostr.Event | null = await new Promise((resolve, reject) => {
 		const sub = relay.subscribe(
 			[
 				{
-					ids: ['00cbd92cd088de9d37423c8f025d39fb5b4f1ea4b28c9bfcd7cdee1986013d38']
+					ids: ['ed16238935665bebd4c897cdecc7a98a53a183dac90486d130e7193b1cb27f6a']
 				}
 			],
 			{
@@ -35,5 +36,5 @@ export async function fetchEvent(): Promise<string> {
 
 	relay.close();
 
-	return JSON.stringify(event);
+	return event;
 }

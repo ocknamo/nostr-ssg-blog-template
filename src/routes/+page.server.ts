@@ -1,8 +1,8 @@
-import { fetchEvent } from '$lib/server';
+import { getEvent } from '$lib/server';
 
 export async function load() {
-	const event = await fetchEvent();
+	const event = await getEvent();
 	return {
-		event
+		eventString: JSON.stringify(event)
 	};
 }

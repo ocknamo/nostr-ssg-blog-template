@@ -1,1 +1,1 @@
-export * from './test-fetch';
+export * from './get-event';

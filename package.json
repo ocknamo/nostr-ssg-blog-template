@@ -24,6 +24,7 @@
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-svelte": "^2.35.1",
 		"nostr-tools": "^2.5.2",
+		"nostr-typedef": "^0.9.0",
 		"prettier": "^3.1.1",
 		"prettier-plugin-svelte": "^3.1.2",
 		"svelte": "^4.2.7",
@@ -36,5 +37,8 @@
 	"type": "module",
 	"volta": {
 		"node": "22.2.0"
+	},
+	"dependencies": {
+		"svelte-markdown": "^0.4.1"
 	}
 }
