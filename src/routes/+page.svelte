@@ -17,7 +17,7 @@
 
 <style>
 	.main-content {
-		margin-left: 100px;
+		margin: 0 20px;
 		max-width: 800px;
 	}
 </style>
