@@ -1,7 +1,8 @@
-import { getDate } from '$lib/server';
+import { fetchEvent } from '$lib/server';
 
-export function load() {
+export async function load() {
+	const eventString = await fetchEvent();
 	return {
-		dateString: getDate()
+		event: eventString
 	};
 }
