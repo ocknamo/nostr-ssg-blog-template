@@ -21,9 +21,16 @@ export async function fetchEvent(): Promise<string> {
 				},
 				oneose() {
 					sub.close();
+					reject(null);
 				}
 			}
 		);
+
+		setTimeout(() => {
+			console.warn('Cannot fetch event!');
+
+			resolve(null);
+		}, 10 * 1000);
 	});
 
 	relay.close();
