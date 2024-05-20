@@ -1,18 +1,8 @@
-# create-svelte
+# PoC nostr SSG
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+PoC of Static Site Generator.
 
-## Creating a project
-
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+https://poc-nostr-ssg.pages.dev/
 
 ## Developing
 
