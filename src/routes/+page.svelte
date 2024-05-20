@@ -12,7 +12,8 @@
 </div>
 <hr />
 <p>
-	Visit <a href="https://github.com/ocknamo/poc-nostr-ssg">poc-nostr-ssg</a> to read the documentation
+	Visit <a href="https://github.com/ocknamo/nostr-ssg-blog-template">nostr-ssg-blog-template</a> to read
+	the documentation
 </p>
 
 <style>

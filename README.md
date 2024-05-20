@@ -1,8 +1,8 @@
 # PoC nostr SSG
 
-PoC of Static Site Generator.
+Blog template as Static site on Nostr.
 
-https://poc-nostr-ssg.pages.dev/
+https://nostr-ssg-blog-template.pages.dev/
 
 ## Developing
 
