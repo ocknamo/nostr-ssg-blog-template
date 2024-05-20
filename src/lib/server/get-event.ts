@@ -1,40 +1,27 @@
-import type * as Nostr from 'nostr-typedef';
-import { Relay } from 'nostr-tools/relay';
+import { eventKind, NostrFetcher, type NostrEventExt } from 'nostr-fetch';
 
-export async function getEvent(): Promise<Nostr.Event | null> {
-	const relay = await Relay.connect('wss://nos.lol/');
-	console.log(`connected to ${relay.url}`);
+const nHoursAgo = (hrs: number): number => Math.floor((Date.now() - hrs * 60 * 60 * 1000) / 1000);
 
-	// let's query for an event that exists
+export async function getLongformEvent(): Promise<NostrEventExt[]> {
+	const fetcher = NostrFetcher.init();
+	const relayUrls = ['wss://nos.lol/'];
+	const oneYearAgo = nHoursAgo(24 * 365);
 
-	const event: Nostr.Event | null = await new Promise((resolve, reject) => {
-		const sub = relay.subscribe(
-			[
-				{
-					ids: ['ed16238935665bebd4c897cdecc7a98a53a183dac90486d130e7193b1cb27f6a']
-				}
-			],
-			{
-				onevent(event) {
-					console.log('we got the event we wanted:', event);
+	const allPosts = await fetcher.fetchAllEvents(
+		relayUrls,
+		{
+			kinds: [eventKind.article],
+			authors: ['26bb2ebed6c552d670c804b0d655267b3c662b21e026d6e48ac93a6070530958'] // Me
+		},
+		{
+			since: oneYearAgo
+		},
+		{
+			sort: true
+		}
+	);
 
-					resolve(event);
-				},
-				oneose() {
-					sub.close();
-					reject(null);
-				}
-			}
-		);
+	console.log(allPosts);
 
-		setTimeout(() => {
-			console.warn('Cannot fetch event!');
-
-			resolve(null);
-		}, 10 * 1000);
-	});
-
-	relay.close();
-
-	return event;
+	return allPosts;
 }

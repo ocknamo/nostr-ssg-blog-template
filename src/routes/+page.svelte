@@ -1,14 +1,20 @@
 <script lang="ts">
-	import SvelteMarkdown from 'svelte-markdown';
 	export let data;
 
-	const { content } = JSON.parse(data.eventString);
+	const events = data.events;
 </script>
 
-<h1>SSG nostr Event PoC</h1>
+<h1>Nost Blog Template</h1>
 <hr />
-<div class="main-content">
-	<SvelteMarkdown source={content}></SvelteMarkdown>
+<div class="contents">
+	<!-- <SvelteMarkdown source={content}></SvelteMarkdown> -->
+	<ul>
+		{#each events as event}
+			<li>
+				<a href="/article/{event.naddress}">{event.naddress}</a>
+			</li>
+		{/each}
+	</ul>
 </div>
 <hr />
 <p>
@@ -17,7 +23,7 @@
 </p>
 
 <style>
-	.main-content {
+	.contents {
 		margin: 0 20px;
 		max-width: 800px;
 	}
