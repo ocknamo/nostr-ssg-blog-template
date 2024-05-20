@@ -21,7 +21,5 @@ export async function getLongformEvent(): Promise<NostrEventExt[]> {
 		}
 	);
 
-	console.log(allPosts);
-
 	return allPosts;
 }

@@ -1,19 +1,13 @@
 <script lang="ts">
-	export let data;
+	import SvelteMarkdown from 'svelte-markdown';
 
-	const events = data.events;
+	export let data;
 </script>
 
-<h1>Nost Blog Template</h1>
+<h1>{data.naddress}</h1>
 <hr />
 <div class="contents">
-	<ul>
-		{#each events as event}
-			<li>
-				<a href="/blog/{event.naddress}">{event.naddress}</a>
-			</li>
-		{/each}
-	</ul>
+	<SvelteMarkdown source={data.content}></SvelteMarkdown>
 </div>
 <hr />
 <p>

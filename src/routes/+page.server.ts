@@ -1,21 +1,15 @@
-import { getLongformEvent } from '$lib/server';
-import { naddrEncode } from 'nostr-tools/nip19';
-import type { AdouptedEvent } from '$lib/types';
+import { blogStore } from '$lib/server/blog-store.service';
 
 export async function load() {
-	const events = await getLongformEvent();
+	await blogStore.fetch();
+	const events = blogStore.events;
 
-	const adouptedEvent: AdouptedEvent[] = events
-		.map((e) => {
-			const identifierTag = e.tags.find((t) => t[0] === 'd');
-			return identifierTag ? { ...e, identifier: identifierTag[1] } : { ...e, identifier: '' };
-		})
-		.filter((e) => !!e.identifier)
-		.map((e) => ({
-			...e,
-			naddress: naddrEncode({ identifier: e.identifier as string, pubkey: e.pubkey, kind: e.kind })
-		}));
+	// Debug log
+	for (const event of events) {
+		console.log('id', event.naddress);
+	}
+
 	return {
-		events: adouptedEvent
+		events
 	};
 }
