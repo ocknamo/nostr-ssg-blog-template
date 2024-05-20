@@ -4,7 +4,7 @@
 	export let data;
 </script>
 
-<h1>{data.naddress}</h1>
+<h1>{data.id}</h1>
 <hr />
 <div class="contents">
 	<SvelteMarkdown source={data.content}></SvelteMarkdown>

@@ -10,7 +10,7 @@
 	<ul>
 		{#each events as event}
 			<li>
-				<a href="/blog/{event.naddress}">{event.naddress}</a>
+				<a href="/blog/{event.id}">{event.id}</a>
 			</li>
 		{/each}
 	</ul>
