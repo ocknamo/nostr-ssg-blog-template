@@ -2,14 +2,14 @@ import { blogStore } from '$lib/server/blog-store.service';
 
 export async function load() {
 	await blogStore.fetch();
-	const events = blogStore.events;
+	const blogs = blogStore.blogs;
 
 	// Debug log
-	for (const event of events) {
-		console.log('id', event.naddress);
+	for (const blog of blogs) {
+		console.log('Build titile: ', blog.title);
 	}
 
 	return {
-		events
+		blogs
 	};
 }

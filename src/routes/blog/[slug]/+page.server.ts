@@ -3,14 +3,13 @@ import { error } from '@sveltejs/kit';
 import { blogStore } from '$lib/server/blog-store.service';
 
 export function load({ params }: { params: { slug: string } }) {
-	const events = blogStore.events;
+	const blogs = blogStore.blogs;
 
-	const event = events.find((e) => e.id === params.slug);
+	const blog = blogs.find((b) => b.id === params.slug);
 
-	if (event) {
+	if (blog) {
 		return {
-			id: params.slug,
-			content: event.content
+			blog
 		};
 	}
 

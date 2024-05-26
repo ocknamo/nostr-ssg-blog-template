@@ -4,10 +4,29 @@
 	export let data;
 </script>
 
-<h1>{data.id}</h1>
+<hgroup>
+	<h1>{data.blog.title}</h1>
+	<p class="naddress">
+		naddress: <a
+			href={'https://nostter.app/' + data.blog.naddress}
+			target="_blank"
+			rel="noopener noreferrer">{data.blog.naddress}</a
+		>
+	</p>
+	<p class="summary">{data.blog.summary}</p>
+	<div class="tags">
+		{#each data.blog.hashTags as htag}
+			<a
+				href={'https://nostter.app/search?q=' + encodeURIComponent('#') + htag}
+				target="_blank"
+				rel="noopener noreferrer">#{htag}</a
+			>
+		{/each}
+	</div>
+</hgroup>
 <hr />
 <div class="contents">
-	<SvelteMarkdown source={data.content}></SvelteMarkdown>
+	<SvelteMarkdown source={data.blog.content}></SvelteMarkdown>
 </div>
 <hr />
 <p>
@@ -19,5 +38,24 @@
 	.contents {
 		margin: 0 20px;
 		max-width: 800px;
+	}
+
+	hgroup {
+		margin: 8px 20px;
+		max-width: 800px;
+	}
+
+	hgroup .naddress {
+		font-size: 0.8rem;
+	}
+
+	hgroup .summary {
+		border: solid 1px #888;
+		border-radius: 8px;
+		padding: 4px;
+	}
+
+	.tags a {
+		margin-right: 10px;
 	}
 </style>

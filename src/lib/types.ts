@@ -1,6 +1,9 @@
 import type { NostrEventExt } from 'nostr-fetch';
 
-export interface AdouptedEvent extends NostrEventExt {
+export interface Blog extends NostrEventExt {
+	title: string;
+	summary: string;
+	hashTags: string[];
 	identifier: string;
 	naddress: string;
 }

@@ -1,16 +1,16 @@
 <script lang="ts">
 	export let data;
 
-	const events = data.events;
+	const blogs = data.blogs;
 </script>
 
-<h1>Nost Blog Template</h1>
+<h1>Nostr Blog</h1>
 <hr />
 <div class="contents">
 	<ul>
-		{#each events as event}
+		{#each blogs as blog}
 			<li>
-				<a href="/blog/{event.id}">{event.id}</a>
+				<a href="/blog/{blog.id}">{blog.title}</a>
 			</li>
 		{/each}
 	</ul>
