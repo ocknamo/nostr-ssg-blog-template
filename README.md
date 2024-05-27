@@ -1,8 +1,16 @@
-# PoC nostr SSG
+# nostr SSG blog template
 
 Blog template as Static site on Nostr.
 
+sample
 https://nostr-ssg-blog-template.pages.dev/
+
+## How it works
+
+It uses the SSG feature of the Svelte kit.
+When the build is executed, information about the events retrieved by a specific filter is fetched from the relay and generated as a static page under `/blog`.
+
+All data fetching is done at build time. Therefore, the screen display is very fast. On the other hand, after Nostr events are updated, it is necessary to run the build again to reflect them on the blog screen.
 
 ## Developing
 
