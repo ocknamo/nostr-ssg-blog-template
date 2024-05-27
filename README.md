@@ -39,6 +39,7 @@ You can preview the production build with `npm run preview`.
 
 - Preview for Nostr Events in article 
 - Config
+- Black list
 - Thumbnail image
 - OGP of articles
 - Update documents
