@@ -50,7 +50,7 @@
 
 	hgroup img {
 		min-width: 100%;
-		max-height: 320px;
+		height: 320px;
 		object-fit: cover;
 	}
 
