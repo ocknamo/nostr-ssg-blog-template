@@ -37,7 +37,7 @@ You can preview the production build with `npm run preview`.
 
 ## Future work(TODO)
 
-- Preview for Nostr Events in article 
+- Preview for Nostr Events in article
 - Config
 - Black list
 - Thumbnail image

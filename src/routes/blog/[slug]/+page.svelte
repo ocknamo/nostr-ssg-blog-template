@@ -5,6 +5,9 @@
 </script>
 
 <hgroup>
+	{#if !!data.blog.image}
+		<img class="image" src={data.blog.image} alt="thumbnail" />
+	{/if}
 	<h1>{data.blog.title}</h1>
 	<p class="naddress">
 		naddress: <a
@@ -43,6 +46,12 @@
 	hgroup {
 		margin: 8px 20px;
 		max-width: 800px;
+	}
+
+	hgroup img {
+		min-width: 100%;
+		max-height: 320px;
+		object-fit: cover;
 	}
 
 	hgroup .naddress {

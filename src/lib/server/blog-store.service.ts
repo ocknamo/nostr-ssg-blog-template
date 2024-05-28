@@ -12,14 +12,16 @@ export class BlogStoreService {
 		const blogs: Blog[] = events
 			.map((e) => {
 				const identifierTag = e.tags.find((t) => t[0] === 'd') ?? [];
-				const title = e.tags.find((t) => t[0] === 'title') ?? [];
-				const summary = e.tags.find((t) => t[0] === 'summary') ?? [];
+				const titleTag = e.tags.find((t) => t[0] === 'title') ?? [];
+				const summaryTag = e.tags.find((t) => t[0] === 'summary') ?? [];
+				const imageTag = e.tags.find((t) => t[0] === 'image') ?? [];
 				const hashTags = e.tags.filter((t) => t[0] === 't').map((t) => t[1]);
 				return {
 					...e,
 					identifier: identifierTag[1],
-					title: title[1],
-					summary: summary[1],
+					title: titleTag[1],
+					summary: summaryTag[1],
+					image: imageTag[1],
 					hashTags
 				};
 			})
