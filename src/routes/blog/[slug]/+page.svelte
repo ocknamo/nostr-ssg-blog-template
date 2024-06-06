@@ -1,13 +1,45 @@
 <script lang="ts">
 	import SvelteMarkdown from 'svelte-markdown';
+	import { browser } from '$app/environment';
 
 	export let data;
+
+	// お手製のfailbackのPoC
+	// 雑な実装なので作り込む必要がありそう
+	// widthなどの値も渡したい
+	const optimazerPrefix =
+		'https://nostr-image-optimizer.ocknamo.com/image/width=1600,quality=50,format=';
+
+	let src = {
+		img: `${optimazerPrefix}webp/${data.blog.image}`,
+		webp: [`${optimazerPrefix}webp/${data.blog.image}`],
+		jpeg: [`${optimazerPrefix}jpeg/${data.blog.image}`]
+	};
+
+	const handleImgError = (e: Event) => {
+		if (e.type !== 'error') {
+			return;
+		}
+
+		// failback
+		src = {
+			img: data.blog.image,
+			webp: [data.blog.image],
+			jpeg: [data.blog.image]
+		};
+	};
 </script>
 
 <hgroup>
-	{#if !!data.blog.image}
-		<img class="image" src={data.blog.image} alt="thumbnail" />
-	{/if}
+	<div class="image-wrapper">
+		{#if !!data.blog.image && browser}
+			<picture>
+				<source srcset={src.jpeg[0]} type="image/jpeg" />
+				<source srcset={src.webp[0]} type="image/webp" />
+				<img src={src.img} alt="my top" on:error={handleImgError} loading="lazy" />
+			</picture>
+		{/if}
+	</div>
 	<h1>{data.blog.title}</h1>
 	<p class="naddress">
 		naddress: <a
@@ -46,6 +78,10 @@
 	hgroup {
 		margin: 8px 20px;
 		max-width: 800px;
+	}
+
+	hgroup .image-wrapper {
+		height: 320px;
 	}
 
 	hgroup img {
