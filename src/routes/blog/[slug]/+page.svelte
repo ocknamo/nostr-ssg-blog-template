@@ -1,43 +1,32 @@
 <script lang="ts">
 	import SvelteMarkdown from 'svelte-markdown';
 	import { browser } from '$app/environment';
+	import Image from '$lib/components/Image.svelte';
 
 	export let data;
 
-	// お手製のfailbackのPoC
-	// 雑な実装なので作り込む必要がありそう
-	// widthなどの値も渡したい
-	const optimazerPrefix =
-		'https://nostr-image-optimizer.ocknamo.com/image/width=1600,quality=50,format=';
+	// PoC
+	const optimazerPrefix = 'https://nostr-image-optimizer.ocknamo.com/image/';
 
 	let src = {
-		img: `${optimazerPrefix}webp/${data.blog.image}`,
-		webp: [`${optimazerPrefix}webp/${data.blog.image}`],
-		jpeg: [`${optimazerPrefix}jpeg/${data.blog.image}`]
-	};
-
-	const handleImgError = (e: Event) => {
-		if (e.type !== 'error') {
-			return;
-		}
-
-		// failback
-		src = {
-			img: data.blog.image,
-			webp: [data.blog.image],
-			jpeg: [data.blog.image]
-		};
+		img: `${optimazerPrefix}width=1600,quality=70,format=webp/${data.blog.image}`,
+		webp: [
+			{ src: `${optimazerPrefix}width=1600,quality=50,format=webp/${data.blog.image}`, w: 1600 },
+			{ src: `${optimazerPrefix}width=800,quality=50,format=webp/${data.blog.image}`, w: 800 }
+		],
+		jpeg: [
+			{ src: `${optimazerPrefix}width=1600,quality=50,format=jpeg/${data.blog.image}`, w: 1600 },
+			{ src: `${optimazerPrefix}width=800,quality=50,format=jpeg/${data.blog.image}`, w: 800 }
+		],
+		failback: data.blog.image,
+		alt: 'blog top'
 	};
 </script>
 
 <hgroup>
 	<div class="image-wrapper">
 		{#if !!data.blog.image && browser}
-			<picture>
-				<source srcset={src.jpeg[0]} type="image/jpeg" />
-				<source srcset={src.webp[0]} type="image/webp" />
-				<img src={src.img} alt="my top" on:error={handleImgError} loading="lazy" />
-			</picture>
+			<Image style="min-width: 100%;height: 320px;object-fit: cover;" {src}></Image>
 		{/if}
 	</div>
 	<h1>{data.blog.title}</h1>
@@ -82,12 +71,6 @@
 
 	hgroup .image-wrapper {
 		height: 320px;
-	}
-
-	hgroup img {
-		min-width: 100%;
-		height: 320px;
-		object-fit: cover;
 	}
 
 	hgroup .naddress {
