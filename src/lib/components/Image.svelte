@@ -62,7 +62,7 @@
 
 <style>
 	.blur-animation {
-		animation: 0.8s ease-in normal show;
+		animation: 0.5s ease-in normal show;
 	}
 
 	@keyframes show {
