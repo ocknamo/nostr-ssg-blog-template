@@ -6,9 +6,11 @@
 	export let data;
 
 	// PoC
+	// TODO: set from config
 	const optimazerPrefix = 'https://nostr-image-optimizer.ocknamo.com/image/';
 
 	let src = {
+		w: 800,
 		img: `${optimazerPrefix}width=1600,quality=70,format=webp/${data.blog.image}`,
 		webp: [
 			{ src: `${optimazerPrefix}width=1600,quality=50,format=webp/${data.blog.image}`, w: 1600 },
@@ -19,7 +21,8 @@
 			{ src: `${optimazerPrefix}width=800,quality=50,format=jpeg/${data.blog.image}`, w: 800 }
 		],
 		failback: data.blog.image,
-		alt: 'blog top'
+		alt: 'blog top',
+		placeholder: data.blog.imagePlaceholderUrl
 	};
 </script>
 
