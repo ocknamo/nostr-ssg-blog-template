@@ -18,6 +18,8 @@
 	export let src: ImageSrc;
 	export let style: string;
 
+	let loadStatus: 'loading' | 'loaded' = 'loading';
+
 	if (src.placeholder) {
 		style = `${style} background: url(${src.placeholder}) no-repeat center/cover;`;
 	}
@@ -36,6 +38,10 @@
 			png: []
 		};
 	};
+
+	const handleLoaded = () => {
+		loadStatus = 'loaded';
+	};
 </script>
 
 <picture>
@@ -52,26 +58,32 @@
 		width={src.w}
 		height={src.h}
 		{style}
+		class="image-{loadStatus}"
 		src={src.img}
 		alt={src.alt}
-		class="blur-animation"
 		on:error={handleImgError}
+		on:load={handleLoaded}
 		loading="lazy"
 	/>
 </picture>
 
 <style>
-	.blur-animation {
-		animation: 0.5s ease-in normal show;
+	.image-loading {
+		animation: 1s ease-in normal show;
+	}
+
+	.image-loaded {
+		filter: blur(0px);
+		opacity: 1;
 	}
 
 	@keyframes show {
 		from {
-			filter: blur(10px);
+			filter: blur(22px);
 			opacity: 0;
 		}
 		to {
-			filter: blur(0px);
+			filter: blur(10px);
 			opacity: 1;
 		}
 	}
