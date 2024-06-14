@@ -22,7 +22,8 @@
 		],
 		failback: data.blog.image,
 		alt: 'blog top',
-		placeholder: data.blog.imagePlaceholderUrl
+		placeholder: data.blog.imagePlaceholderUrl,
+		blur: true
 	};
 </script>
 

@@ -14,8 +14,13 @@
 		failback: string;
 		alt: string;
 		placeholder?: string;
+		blur?: boolean;
 	}
 	export let src: ImageSrc;
+
+	// Set default value
+	src = { ...src, blur: src.blur === undefined ? true : src.blur };
+
 	export let style: string;
 
 	let loadStatus: 'loading' | 'loaded' = 'loading';
@@ -58,7 +63,7 @@
 		width={src.w}
 		height={src.h}
 		{style}
-		class="image-{loadStatus}"
+		class={src.blur ? `image-blur-${loadStatus}` : ''}
 		src={src.img}
 		alt={src.alt}
 		on:error={handleImgError}
@@ -68,19 +73,30 @@
 </picture>
 
 <style>
-	.image-loading {
-		animation: 1s ease-in normal show;
+	.image-blur-loading {
+		animation:
+			0.8s linear 0s normal waiting,
+			0.4s ease-in 0.8s normal show;
 	}
 
-	.image-loaded {
+	.image-blur-loaded {
 		filter: blur(0px);
 		opacity: 1;
 	}
 
+	@keyframes waiting {
+		from {
+			opacity: 0;
+		}
+		to {
+			opacity: 0;
+		}
+	}
+
 	@keyframes show {
 		from {
-			filter: blur(22px);
-			opacity: 0;
+			filter: blur(20px);
+			opacity: 0.5;
 		}
 		to {
 			filter: blur(10px);
