@@ -2,6 +2,7 @@
 	import SvelteMarkdown from 'svelte-markdown';
 	import { browser } from '$app/environment';
 	import Image from '$lib/components/Image.svelte';
+	import type { ImageSrc } from '$lib/components/Image.type.js';
 
 	export let data;
 
@@ -9,7 +10,7 @@
 	// TODO: set from config
 	const optimazerPrefix = 'https://nostr-image-optimizer.ocknamo.com/image/';
 
-	let src = {
+	let src: ImageSrc = {
 		w: 800,
 		img: `${optimazerPrefix}width=1600,quality=70,format=webp/${data.blog.image}`,
 		webp: [
@@ -22,7 +23,7 @@
 		],
 		failback: data.blog.image,
 		alt: 'blog top',
-		placeholder: data.blog.imagePlaceholderUrl,
+		placeholder: { dataUri: data.blog.imagePlaceholderUrl, color: 'black' },
 		blur: true
 	};
 </script>
