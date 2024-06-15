@@ -23,7 +23,7 @@
 		],
 		failback: data.blog.image,
 		alt: 'blog top',
-		placeholder: { dataUri: data.blog.imagePlaceholderUrl, color: 'black' },
+		placeholder: { dataUri: data.blog.imagePlaceholderUrl, color: '#888' },
 		blur: true
 	};
 </script>
