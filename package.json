@@ -42,5 +42,8 @@
 	"type": "module",
 	"volta": {
 		"node": "22.2.0"
+	},
+	"dependencies": {
+		"svelte-remote-image": "^0.0.2"
 	}
 }

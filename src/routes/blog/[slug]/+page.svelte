@@ -1,8 +1,7 @@
 <script lang="ts">
 	import SvelteMarkdown from 'svelte-markdown';
 	import { browser } from '$app/environment';
-	import Image from '$lib/components/Image.svelte';
-	import type { ImageSrc } from '$lib/components/Image.type.js';
+	import { Image, type ImageSrc } from 'svelte-remote-image';
 
 	export let data;
 
